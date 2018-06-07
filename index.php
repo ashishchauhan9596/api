@@ -1,6 +1,5 @@
 <?php echo "hello"; 
 
-echo "bye";
 ?>
 <!DOCTYPE html>
 <html>
