@@ -1,16 +1,23 @@
-<?php echo "hello"; 
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
+	<title>new tester</title>
 </head>
 <body>
-	<form>
-		<input type="text" name="test"><br>
-		<input type="password" name="tpass"><br>
-		<input type="submit" name="tsub" value="submit">
-	</form>
+	<?php
+		$response = file_get_contents('http://thecatapi.com/api/images/get?format=xml&results_per_page=83');
+
+		$xml = simplexml_load_string($response);
+		$json = json_encode($xml); 
+		$array = json_decode($json,TRUE);
+		$arrlength = sizeof($array,1);
+		// echo $arrlength;
+		// die();
+		for($x = 0; $x < $arrlength; $x++) { ?>
+			<img src="<?php echo $array['data']['images']['image'][$x]['url']; ?>">
+			<?php
+		echo "<br>";
+		}
+	?>
 </body>
 </html>
